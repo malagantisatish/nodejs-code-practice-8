@@ -21,7 +21,7 @@ let initializeDbAndServer = async () => {
       console.log("server running at http://localhost:3000");
     });
   } catch (error) {
-    console.log(Error at ${error.message});
+    console.log(`Error at ${error.message}`);
     process.exit(1);
   }
 };
@@ -79,7 +79,7 @@ app.get("/todos/", async (request, response) => {
 
 app.get("/todos/:todoId/", async (request, response) => {
   const { todoId } = request.params;
-  const getTheTodoQuery = SELECT * FROM todo WHERE id=${todoId};;
+  const getTheTodoQuery = `SELECT * FROM todo WHERE id=${todoId};`;
   const todo = await db.get(getTheTodoQuery);
   response.send(todo);
 });
